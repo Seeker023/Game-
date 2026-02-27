@@ -74,16 +74,21 @@ button {
     color: white;
 }
 
+/* Main Birthday Text */
 #birthdayText {
-    margin-top: 50px;
-    font-size: 26px;
-    padding: 0 15px;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 /* Flying Photos */
 .photo {
     position: absolute;
-    width: 45%;
+    width: 35%;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     opacity: 0;
@@ -94,6 +99,7 @@ button {
     opacity: 1;
 }
 
+/* Final Message */
 #finalMessage {
     position: absolute;
     bottom: 5%;
@@ -101,6 +107,7 @@ button {
     font-size: 16px;
     padding: 0 20px;
     display: none;
+    z-index: 10;
 }
 </style>
 </head>
@@ -116,7 +123,7 @@ button {
 
 <!-- Stage 2 -->
 <div id="stage2">
-    <h2>You have moved one step closer to DEATH 💀🪦.</h2>
+    <h2>You have moved one step closer to legendary status.</h2>
     <p>Age level increased.</p>
     <button onclick="startCountdown()">ACCEPT UPDATE</button>
 </div>
@@ -126,20 +133,23 @@ button {
 
 <!-- Celebration -->
 <div id="celebration">
-    <h1 id="birthdayText">🎉 HAPPY BIRTHDAY 🎉<br>To My Incredible Sister ❤️</h1>
 
-    <!-- Images from images folder -->
-<img src="images/pic0.jpg" class="photo">
-<img src="images/pic1.jpg" class="photo">
-<img src="images/pic2.jpg" class="photo">
-<img src="images/pic3.jpg" class="photo">
-<img src="images/pic4.jpg" class="photo">
-<img src="images/pic5.jpg" class="photo">
-<img src="images/pic6.jpg" class="photo">
-<img src="images/pic7.jpg" class="photo">
-<img src="images/pic8.jpg" class="photo">
-<img src="images/pic9.jpg" class="photo">
-<img src="images/pic10.jpg" class="photo">
+    <div id="birthdayText">
+        🎉 Happy Birthday My Dearest Sheni Di 🎉
+    </div>
+
+    <!-- Images -->
+    <img src="images/pic0.jpg" class="photo">
+    <img src="images/pic1.jpg" class="photo">
+    <img src="images/pic2.jpg" class="photo">
+    <img src="images/pic3.jpg" class="photo">
+    <img src="images/pic4.jpg" class="photo">
+    <img src="images/pic5.jpg" class="photo">
+    <img src="images/pic6.jpg" class="photo">
+    <img src="images/pic7.jpg" class="photo">
+    <img src="images/pic8.jpg" class="photo">
+    <img src="images/pic9.jpg" class="photo">
+    <img src="images/pic10.jpg" class="photo">
 
     <div id="finalMessage">
         Thank you for every memory.<br>
@@ -181,19 +191,32 @@ function startCelebration() {
 
     let photos = document.querySelectorAll(".photo");
 
+    const positions = [
+        {top: "18%", left: "5%"},
+        {top: "18%", left: "55%"},
+        {top: "35%", left: "10%"},
+        {top: "35%", left: "60%"},
+        {top: "52%", left: "5%"},
+        {top: "52%", left: "55%"},
+        {top: "69%", left: "15%"},
+        {top: "69%", left: "60%"},
+        {top: "30%", left: "35%"},
+        {top: "60%", left: "35%"},
+        {top: "45%", left: "35%"}
+    ];
+
     photos.forEach((photo, i) => {
         setTimeout(() => {
             photo.classList.add("show");
-
-            photo.style.top = Math.random()*60 + "%";
-            photo.style.left = Math.random()*50 + "%";
-            photo.style.transform = "rotate(" + (Math.random()*30-15) + "deg)";
-        }, i * 400);
+            photo.style.top = positions[i % positions.length].top;
+            photo.style.left = positions[i % positions.length].left;
+            photo.style.transform = "rotate(" + (Math.random()*10-5) + "deg)";
+        }, i * 300);
     });
 
     setTimeout(() => {
         document.getElementById("finalMessage").style.display = "block";
-    }, 5000);
+    }, 4000);
 }
 
 </script>
